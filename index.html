@@ -379,6 +379,147 @@
   .jstrip .jl{ margin-top:4px; font-size:12px; }
   @media (max-width:900px){ .jstage{ grid-template-columns:1fr; } .jstrip{ grid-template-columns:repeat(2,1fr); } .jpanel{ padding:24px 18px; } }
 
+
+  /* ---------- Log 05: two ways of seeing inside the body ---------- */
+  .dpair{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:34px; }
+  .dpair .dcard{ border:none; margin:0; display:flex; flex-direction:column; padding:32px 28px; }
+  .dpair .dcard h3{ font-size:20px; line-height:1.3; }
+  .dviz{ margin:22px 0 4px; padding:14px 8px 8px; background:var(--bg-deep); border:1px solid var(--line); }
+  .dsvg{ display:block; width:100%; height:auto; }
+  .dtxt{ font-family:var(--mono); font-size:8.5px; letter-spacing:0.12em; }
+  .dpill rect{ fill:#0A0C0E; stroke:#4AE38A; stroke-opacity:0.6; }
+  .dpill text{ font-family:var(--mono); font-size:9px; fill:#DCE4E6; }
+  .dline{ margin-top:18px; font-family:var(--serif); font-size:16px; line-height:1.45; color:var(--ink); font-weight:500; }
+  .dpair .dcard .thesis1{ font-size:13.5px; }
+  .dmore{ margin-top:auto; padding-top:22px; }
+  .dmore summary{ list-style:none; cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); padding:10px 0; border-top:1px dashed var(--line); display:flex; justify-content:space-between; align-items:center; }
+  .dmore summary::-webkit-details-marker{ display:none; }
+  .dmore summary::after{ content:'+'; font-size:16px; }
+  .dmore[open] summary::after{ content:'\2212'; }
+  .dmore .os-stack{ max-width:none; margin:10px 0 0; }
+  .dpair .model-stack{ max-width:none; }
+  .drings circle{ transform-origin:160px 104px; animation:dRing 4.5s ease-out infinite; }
+  .drings circle:nth-child(2){ animation-delay:0.6s; } .drings circle:nth-child(3){ animation-delay:1.2s; } .drings circle:nth-child(4){ animation-delay:1.8s; }
+  @keyframes dRing{ 0%,100%{ opacity:0.55; } 50%{ opacity:1; } }
+  .dnode{ animation:dNode 3s ease-in-out infinite; }
+  @keyframes dNode{ 0%,100%{ stroke-opacity:0.6; } 50%{ stroke-opacity:1; } }
+  .dlesion{ animation:dLes 3s ease-in-out infinite; transform-origin:272px 82px; }
+  @keyframes dLes{ 0%,100%{ opacity:0.3; } 50%{ opacity:1; } }
+  @media (prefers-reduced-motion:reduce){ .drings circle,.dnode,.dlesion{ animation:none; } }
+  @media (max-width:900px){ .dpair{ grid-template-columns:1fr; } .dpair .dcard{ padding:26px 18px; } }
+
+
+  /* ---------- Sonosine EMA animation ---------- */
+  .dsim{ padding:14px 10px 10px; }
+  .sx-svg{ display:block; width:100%; height:auto; }
+  .sx-lbl{ font-family:var(--mono); font-size:7px; letter-spacing:0.1em; fill:#8A97A0; }
+  .sx-svg *{ transition:opacity 0.5s ease; }
+  .sx-cell{ opacity:0; }
+  .sx-cell.on{ opacity:0.92; animation:sxPop 0.28s ease-out; }
+  @keyframes sxPop{ from{ transform:scale(0.5); } to{ transform:scale(1); } }
+  .sx-cell{ transform-box:fill-box; transform-origin:center; }
+  .s-final .sx-cell.on{ opacity:0.58; }
+  .sx-bmode{ opacity:0; transform:translateX(-14px); transition:opacity 0.9s ease, transform 0.9s ease !important; }
+  .s-final .sx-bmode{ opacity:1; transform:none; }
+  .sx-lesion{ opacity:0; }
+  .s-final .sx-lesion{ opacity:1; animation:sxLes 2s ease-in-out infinite; }
+  @keyframes sxLes{ 0%,100%{ stroke-opacity:0.25; } 50%{ stroke-opacity:1; } }
+  .sx-conv-wrap,.sx-radio{ opacity:0; }
+  .s-sound .sx-conv-wrap{ opacity:0.45; } .s-1 .sx-conv-wrap{ opacity:1; }
+  .s-radio .sx-radio{ opacity:1; }
+  .sx-conv{ transform-origin:194.5px 134px; animation:sxConv 1.5s linear infinite; opacity:0; }
+  .sx-conv:nth-child(2){ animation-delay:0.5s; } .sx-conv:nth-child(3){ animation-delay:1s; }
+  @keyframes sxConv{ 0%{ transform:scale(1); opacity:0; } 20%{ opacity:1; } 100%{ transform:scale(0.06); opacity:0; } }
+  .sx-rip{ transform-origin:282px 70px; animation:sxRip 2.2s ease-out infinite; opacity:0; }
+  .sx-rip:nth-child(2){ animation-delay:0.7s; } .sx-rip:nth-child(3){ animation-delay:1.4s; }
+  @keyframes sxRip{ 0%{ transform:scale(0.05); opacity:0.9; } 100%{ transform:scale(1); opacity:0; } }
+  .sx-spot{ transform:translate(194.5px,134px); transition:transform 0.07s linear !important; }
+  .sx-core{ animation:sxTrem 0.14s linear infinite; }
+  @keyframes sxTrem{ 0%,100%{ transform:translate(0,0); } 25%{ transform:translate(1px,0.6px); } 50%{ transform:translate(-1px,-0.6px); } 75%{ transform:translate(0.6px,-1px); } }
+  .s-final .sx-core, .s-paint .sx-core{ animation:none; }
+  .sx-hop{ opacity:0; }
+  .s-paint .sx-hop{ opacity:1; }
+  .s-final .sx-spot{ opacity:0; }
+  .sx-strip{ opacity:0; }
+  .s-strip .sx-strip{ opacity:1; }
+  .s-filter .sx-smooth{ opacity:0.12; }
+  .sx-filter,.sx-filter-lbl{ opacity:0; }
+  .s-filter .sx-filter, .s-filter .sx-filter-lbl{ opacity:1; }
+  .s-paint .sx-strip{ opacity:0.55; } .s-final .sx-strip{ opacity:0.2; }
+  .s-wave .sx-wavy{ filter:drop-shadow(0 0 3px #4AE38A); }
+  .sx-ctl{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:10px; padding:10px 6px 2px; border-top:1px dashed var(--line); }
+  .sx-cap{ display:flex; align-items:baseline; gap:10px; min-height:22px; }
+  .sx-n{ white-space:nowrap; font-family:var(--mono); font-size:10.5px; color:var(--teal); letter-spacing:0.1em; }
+  .sx-t{ font-family:var(--serif); font-size:14px; color:var(--ink); transition:opacity 0.3s ease; }
+  .sx-t.swap{ opacity:0; }
+  .sx-nav{ display:flex; align-items:center; gap:10px; }
+  .sx-dots{ display:flex; gap:2px; }
+  .sx-dot{ width:26px; height:26px; background:none; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
+  .sx-dot span{ width:8px; height:8px; border-radius:50%; background:var(--ink-faint); transition:background 0.25s ease, transform 0.25s ease; }
+  .sx-dot:hover span{ background:var(--ink-dim); }
+  .sx-dot.active span{ background:var(--accent); transform:scale(1.35); }
+  .sx-dot:focus-visible,.sx-replay:focus-visible{ outline:1px solid var(--accent); outline-offset:2px; }
+  .sx-replay{ font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); background:none; border:1px solid var(--line); padding:6px 10px; cursor:pointer; transition:color 0.2s ease, border-color 0.2s ease; }
+  .sx-replay:hover{ color:var(--accent); border-color:var(--accent-dim); }
+  .sx-list{ display:none; margin:10px 6px 0 26px; padding:0; font-size:12.5px; color:var(--ink-dim); line-height:1.7; }
+  .dsim.rm .sx-list{ display:block; }
+  .dsim.rm *{ animation:none !important; transition:none !important; }
+  @media (prefers-reduced-motion:reduce){ .dsim *{ animation:none !important; transition:none !important; } }
+  @media (max-width:520px){ .sx-ctl{ flex-direction:column; align-items:flex-start; } .sx-lbl{ font-size:8px; } }
+
+
+  /* ---------- Spectroma UWB animation ---------- */
+  .sp-svg{ display:block; width:100%; height:auto; }
+  .sp-svg *{ transition:opacity 0.5s ease; }
+  .sp-pulse,.sp-scat{ opacity:0; }
+  .on-pulse .sp-pulse{ opacity:1; } .s-3 .sp-pulse{ opacity:0.4; } .s-4 .sp-pulse{ opacity:0.6; }
+  .on-scat .sp-scat{ opacity:1; } .s-4 .sp-scat{ opacity:0.3; }
+  .sp-pc{ animation:spPc 1.5s linear infinite; opacity:0; }
+  .sp-pc:nth-child(2){ animation-delay:0.1s; } .sp-pc:nth-child(3){ animation-delay:0.2s; }
+  @keyframes spPc{ 0%{ transform:scale(0.03); opacity:0.95; } 100%{ transform:scale(1); opacity:0; } }
+  .sp-sc{ animation:spSc 1.5s ease-out infinite; opacity:0; animation-delay:0.5s; }
+  .sp-sc:nth-child(2){ animation-delay:0.9s; }
+  @keyframes spSc{ 0%{ transform:scale(0.05); opacity:0.9; } 100%{ transform:scale(1); opacity:0; } }
+  .sp-incl{ transition:filter 0.4s ease; }
+  .on-scat .sp-incl{ filter:drop-shadow(0 0 4px #4AE38A); }
+  .sp-tx{ transition:opacity 0.5s ease !important; }
+  .s-5 .sp-tx, .s-final .sp-tx{ opacity:0; }
+  .sp-sen{ opacity:0.55; transform-box:fill-box; transform-origin:center; }
+  .on-listen .sp-sen{ animation:spBlip 1.8s ease-out infinite; animation-delay:var(--d,0s); }
+  @keyframes spBlip{ 0%,100%{ opacity:0.5; transform:scale(1); } 18%{ opacity:1; transform:scale(2); } 45%{ opacity:0.7; transform:scale(1.2); } }
+  .s-final .sp-sen{ opacity:0.25; }
+  .sp-data{ opacity:0; transform-origin:180px 128px; }
+  .on-listen .sp-data{ opacity:1; }
+  .sp-bar{ transform:scale(0); }
+  .on-listen .sp-bar{ animation:spBar 1.8s ease-out infinite; animation-delay:var(--d,0s); }
+  @keyframes spBar{ 0%,6%{ transform:scale(0); } 24%,88%{ transform:scale(var(--s,0.7)); } 100%{ transform:scale(0); } }
+  .s-5 .sp-data{ opacity:1; animation:spContract 1.5s ease-in forwards; }
+  .s-5 .sp-bar{ transform:scale(var(--s,0.7)); }
+  @keyframes spContract{ 0%{ transform:scale(1); opacity:1; } 100%{ transform:scale(0.3); opacity:0; } }
+  .s-final .sp-data{ opacity:0; }
+  .sp-body{ transition:opacity 0.6s ease; }
+  .s-5 .sp-body{ opacity:0.3; } .s-final .sp-body{ opacity:0.12; }
+  .sp-img,.sp-imgring{ opacity:0; }
+  .s-5 .sp-img,.s-final .sp-img{ opacity:1; }
+  .s-5 .sp-imgring,.s-final .sp-imgring{ opacity:1; }
+  .sp-noise,.sp-soft,.sp-sharp{ opacity:0; }
+  .s-5 .sp-noise{ animation:spNoise 1.7s ease 0.4s forwards; }
+  .s-5 .sp-soft{ animation:spSoftA 1.5s ease 1.3s forwards; }
+  .s-5 .sp-sharp{ animation:spSharpA 1s ease 2.2s forwards; }
+  @keyframes spNoise{ 0%{ opacity:0; } 30%{ opacity:0.9; } 100%{ opacity:0; } }
+  @keyframes spSoftA{ 0%{ opacity:0; } 40%{ opacity:0.9; } 100%{ opacity:0; } }
+  @keyframes spSharpA{ 0%{ opacity:0; } 100%{ opacity:1; } }
+  .s-final .sp-sharp{ opacity:1; }
+  .sp-ai{ opacity:0; }
+  .s-5 .sp-ai{ animation:spAi 2s ease 0.5s forwards; }
+  @keyframes spAi{ 0%{ opacity:0; } 25%{ opacity:1; } 75%{ opacity:1; } 100%{ opacity:0; } }
+  .sp-pills{ opacity:0; }
+  .s-final .sp-pills{ opacity:1; }
+  .sp-pills rect{ fill:#0A0C0E; stroke:#4AE38A; stroke-opacity:0.6; }
+  .sp-pills text{ font-family:var(--mono); font-size:9px; fill:#DCE4E6; }
+  .dsim.rm .sp-svg *{ animation:none !important; }
+  @media (prefers-reduced-motion:reduce){ .sp-svg *{ animation:none !important; } }
+
   /* ---------- thesis strip (stochastic) ---------- */
   .thesis{ margin-top:40px; padding:28px 30px; border-left:2px solid var(--accent); background:rgba(76,201,240,0.05); transition:border-color 0.55s var(--ease-mech), background 0.55s var(--ease-mech); }
   .thesis p{ font-size:15px; color:var(--ink-dim); font-weight:300; }
@@ -706,7 +847,7 @@
             <div class="hband-role"><b>Cofounder</b><br>Spectroma</div>
             <div class="hband-preview">
               <!-- <div class="hband-preview-head"><div class="hband-mark"><span>SP</span></div><span class="hband-preview-org">Spectroma</span></div> -->
-              <p>UWB microwave imaging — reconstruction in milliseconds vs. minutes for classical methods, via a physics-informed deep learning approach</p>
+              <p>UWB microwave imaging — reconstruction in under 5 minutes via a physics-informed deep learning approach</p>
             </div>
           </div>
             <div class="hband-node branch" id="node-n8b" tabindex="0" role="button" aria-label="Pharmola">
@@ -952,50 +1093,225 @@
 
     <p class="copy reveal reveal-d1">Co-founder / VP, AI Product &amp; Engineering across two UK deeptech/HealthTech ventures in parallel, raised early-stage &amp; growth capital to build AI-driven medical imaging technologies from R&amp;D through fundraising and commercialisation, across product, engineering, IP licensing and investor relations.</p>
 
-    <div class="signal-panel reveal reveal-d1">
-      <div class="signal-tag">Deeptech · AI Diagnostics · Oxford Spinout</div>
-      <h3>Sonosine — Patented Electromagnetic Acoustics (EMA) Technology</h3>
-      <p class="thesis1">Owned the AI product roadmap to combine ultrasound and radio wave signal data into MRI/CT-equivalent diagnostic-grade images — resulting in a ~4–8dB signal-to-noise improvement over single-modality baseline and enabling detection of cancer, calcification and fluid formation undetectable by conventional ultrasound.</p>
-      <div class="os-stack model-stack">
-        <div class="os-cap">Model Stack</div>
-        <div class="os-layer" tabindex="0">
-          <div class="os-layer-label">Layer 1 — Image Fusion (CNN)</div>
-          <div class="os-layer-preview"><p>Fusing ultrasound and electromagnetic signal data into diagnostic-grade images — ~4&ndash;8dB SNR improvement over single-modality baseline.</p></div>
-        </div>
-        <div class="os-layer" tabindex="0">
-          <div class="os-layer-label">Layer 2 — GAN Translation</div>
-          <div class="os-layer-preview"><p>Conditional GAN with PatchGAN discriminator converting fused data into MRI/CT-equivalent diagnostic images — ~0.70&ndash;0.80 SSIM against paired MRI ground truth.</p></div>
-        </div>
-        <div class="os-layer" tabindex="0">
-          <div class="os-layer-label">Layer 3 — Classification</div>
-          <div class="os-layer-preview"><p>Transfer-learned ResNet/EfficientNet backbone distinguishing malignant tissue, calcification and fluid formations — ~82&ndash;86% sensitivity, AUC ~0.85 in early clinical validation.</p></div>
-        </div>
-        <div class="os-cap os-cap-base">Diagnostic-Grade Output</div>
-      </div>
-    </div>
+    <div class="dpair reveal reveal-d1">
+      <article class="signal-panel dcard">
+        <div class="signal-tag">Deeptech · AI Diagnostics · Oxford Spinout</div>
+        <h3>Sonosine — Patented Electromagnetic Acoustics (EMA) Technology</h3>
+        <figure class="dviz dsim" id="sxSim" data-beat="1">
+        <svg class="sx-svg" viewBox="0 0 360 256" role="img" aria-label="Animation: ultrasound tags a tiny spot of tissue, radio waves read it, and repeating across a grid paints an image aligned with the ultrasound picture">
+          <defs>
+            <clipPath id="sxTissue"><rect x="16" y="72" width="328" height="118" rx="6"/></clipPath>
+            <clipPath id="sxCone"><polygon points="160.5,68 228.5,68 194.5,134.0"/></clipPath>
+            <linearGradient id="sxTg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101820"/><stop offset="1" stop-color="#0a0f13"/></linearGradient>
+            <radialGradient id="sxGlow"><stop offset="0" stop-color="#4CC9F0" stop-opacity="0.9"/><stop offset="1" stop-color="#4CC9F0" stop-opacity="0"/></radialGradient>
+          </defs>
 
-    <div class="signal-panel reveal reveal-d2">
-      <div class="signal-tag">Non-invasive · Non-ionizing · Non-radiation Whole-body Imaging</div>
-      <h3>Spectroma — Ultra-Wideband Microwave Imaging</h3>
-      <p class="thesis1 sp-lead">Built 3 prototypes, raised non-dilutive funding and successfully licensed the technology to Neko Health, the preventive-healthcare company backed by Spotify founder Daniel Ek.</p>
-      <p class="thesis1">Owned the technical strategy for solving the inverse scattering problem in UWB microwave tissue imaging, prioritising reconstruction speed as a core product requirement and championing a physics-informed neural network approach to cut required training data.</p>
-      <p class="thesis1">Trained and validated deep learning models across local GPU workstations (prototyping) and AWS cloud infrastructure (distributed multi-GPU training) for both ventures.</p>
-      <div class="os-stack model-stack">
-        <div class="os-cap">Model Stack</div>
-        <div class="os-layer" tabindex="0">
-          <div class="os-layer-label">Layer 1 — Inverse Scattering Reconstruction</div>
-          <div class="os-layer-preview"><p>Physics-informed deep learning delivering single-pass reconstruction in milliseconds, versus seconds-to-minutes for classical iterative methods — ~0.65&ndash;0.75 SSIM against phantom ground truth.</p></div>
+          <rect x="16" y="72" width="328" height="118" rx="6" fill="url(#sxTg)" stroke="rgba(220,228,230,0.18)"/>
+          <path d="M20,86.3 L26,86.8 L32,87.3 L38,87.6 L44,87.9 L50,88.0 L56,88.0 L62,87.8 L68,87.6 L74,87.2 L80,86.7 L86,86.1 L92,85.5 L98,84.8 L104,84.1 L110,83.4 L116,82.7 L122,82.0 L128,81.4 L134,80.9 L140,80.5 L146,80.2 L152,80.0 L158,80.0 L164,80.1 L170,80.3 L176,80.6 L182,81.1 L188,81.6 L194,82.2 L200,82.9 L206,83.6 L212,84.3 L218,85.0 L224,85.7 L230,86.3 L236,86.9 L242,87.3 L248,87.7 L254,87.9 L260,88.0 L266,88.0 L272,87.8 L278,87.5 L284,87.1 L290,86.7 L296,86.1 L302,85.4 L308,84.7 L314,84.0 L320,83.3 L326,82.6 L332,82.0 L338,81.4" fill="none" stroke="rgba(220,228,230,0.05)"/><path d="M20,114.0 L26,113.9 L32,113.7 L38,113.4 L44,112.9 L50,112.4 L56,111.8 L62,111.1 L68,110.4 L74,109.7 L80,109.0 L86,108.3 L92,107.7 L98,107.1 L104,106.7 L110,106.3 L116,106.1 L122,106.0 L128,106.0 L134,106.2 L140,106.5 L146,106.9 L152,107.4 L158,107.9 L164,108.6 L170,109.3 L176,110.0 L182,110.7 L188,111.4 L194,112.0 L200,112.6 L206,113.1 L212,113.5 L218,113.8 L224,114.0 L230,114.0 L236,113.9 L242,113.7 L248,113.3 L254,112.9 L260,112.3 L266,111.7 L272,111.0 L278,110.3 L284,109.6 L290,108.9 L296,108.2 L302,107.6 L308,107.1 L314,106.6 L320,106.3 L326,106.1 L332,106.0 L338,106.0" fill="none" stroke="rgba(220,228,230,0.05)"/><path d="M20,138.1 L26,137.4 L32,136.7 L38,136.0 L44,135.3 L50,134.6 L56,133.9 L62,133.4 L68,132.9 L74,132.5 L80,132.2 L86,132.0 L92,132.0 L98,132.1 L104,132.3 L110,132.7 L116,133.1 L122,133.7 L128,134.3 L134,135.0 L140,135.7 L146,136.4 L152,137.1 L158,137.8 L164,138.4 L170,138.9 L176,139.4 L182,139.7 L188,139.9 L194,140.0 L200,140.0 L206,139.8 L212,139.5 L218,139.1 L224,138.6 L230,138.0 L236,137.4 L242,136.7 L248,135.9 L254,135.2 L260,134.5 L266,133.9 L272,133.3 L278,132.8 L284,132.4 L290,132.2 L296,132.0 L302,132.0 L308,132.1 L314,132.4 L320,132.7 L326,133.2 L332,133.7 L338,134.3" fill="none" stroke="rgba(220,228,230,0.05)"/><path d="M20,160.2 L26,159.6 L32,159.1 L38,158.6 L44,158.3 L50,158.1 L56,158.0 L62,158.0 L68,158.2 L74,158.5 L80,158.9 L86,159.4 L92,160.0 L98,160.7 L104,161.4 L110,162.1 L116,162.8 L122,163.5 L128,164.1 L134,164.7 L140,165.2 L146,165.6 L152,165.8 L158,166.0 L164,166.0 L170,165.9 L176,165.6 L182,165.3 L188,164.8 L194,164.3 L200,163.6 L206,163.0 L212,162.3 L218,161.5 L224,160.8 L230,160.2 L236,159.6 L242,159.0 L248,158.6 L254,158.3 L260,158.1 L266,158.0 L272,158.1 L278,158.2 L284,158.5 L290,159.0 L296,159.5 L302,160.1 L308,160.7 L314,161.4 L320,162.1 L326,162.8 L332,163.5 L338,164.2" fill="none" stroke="rgba(220,228,230,0.05)"/>
+          <rect x="127" y="94" width="120" height="80" fill="none" stroke="rgba(220,228,230,0.22)" stroke-dasharray="3 3"/>
+
+          <g class="sx-bmode">
+            <rect x="127" y="94" width="120" height="80" fill="#161c20"/>
+            <line x1="137" y1="97.0" x2="217" y2="97.0" stroke="rgba(220,228,230,0.13)" stroke-width="1.3"/><line x1="129" y1="101.8" x2="221" y2="101.8" stroke="rgba(220,228,230,0.21)" stroke-width="1.0"/><line x1="128" y1="106.6" x2="218" y2="106.6" stroke="rgba(220,228,230,0.20)" stroke-width="0.6"/><line x1="140" y1="111.4" x2="234" y2="111.4" stroke="rgba(220,228,230,0.11)" stroke-width="0.7"/><line x1="140" y1="116.2" x2="246" y2="116.2" stroke="rgba(220,228,230,0.27)" stroke-width="0.7"/><line x1="134" y1="121.0" x2="227" y2="121.0" stroke="rgba(220,228,230,0.23)" stroke-width="1.5"/><line x1="145" y1="125.8" x2="229" y2="125.8" stroke="rgba(220,228,230,0.18)" stroke-width="1.6"/><line x1="128" y1="130.6" x2="230" y2="130.6" stroke="rgba(220,228,230,0.27)" stroke-width="0.9"/><line x1="131" y1="135.4" x2="230" y2="135.4" stroke="rgba(220,228,230,0.12)" stroke-width="0.9"/><line x1="153" y1="140.2" x2="226" y2="140.2" stroke="rgba(220,228,230,0.14)" stroke-width="1.2"/><line x1="147" y1="145.0" x2="241" y2="145.0" stroke="rgba(220,228,230,0.17)" stroke-width="1.1"/><line x1="129" y1="149.8" x2="229" y2="149.8" stroke="rgba(220,228,230,0.11)" stroke-width="0.8"/><line x1="148" y1="154.6" x2="230" y2="154.6" stroke="rgba(220,228,230,0.19)" stroke-width="0.9"/><line x1="145" y1="159.4" x2="218" y2="159.4" stroke="rgba(220,228,230,0.19)" stroke-width="0.9"/><line x1="152" y1="164.2" x2="242" y2="164.2" stroke="rgba(220,228,230,0.24)" stroke-width="0.8"/><line x1="145" y1="169.0" x2="238" y2="169.0" stroke="rgba(220,228,230,0.21)" stroke-width="1.5"/><circle cx="212.7" cy="118.7" r="1.1" fill="rgba(220,228,230,0.18)"/><circle cx="177.8" cy="152.5" r="0.6" fill="rgba(220,228,230,0.27)"/><circle cx="135.4" cy="146.1" r="1.0" fill="rgba(220,228,230,0.29)"/><circle cx="229.1" cy="120.6" r="0.9" fill="rgba(220,228,230,0.30)"/><circle cx="195.9" cy="130.8" r="1.0" fill="rgba(220,228,230,0.39)"/><circle cx="184.1" cy="145.8" r="0.5" fill="rgba(220,228,230,0.33)"/><circle cx="203.5" cy="169.5" r="1.0" fill="rgba(220,228,230,0.22)"/><circle cx="174.2" cy="146.1" r="0.5" fill="rgba(220,228,230,0.27)"/><circle cx="149.8" cy="106.4" r="0.5" fill="rgba(220,228,230,0.34)"/><circle cx="145.5" cy="115.8" r="0.7" fill="rgba(220,228,230,0.37)"/><circle cx="140.0" cy="130.3" r="0.8" fill="rgba(220,228,230,0.37)"/><circle cx="222.8" cy="160.2" r="0.7" fill="rgba(220,228,230,0.25)"/><circle cx="171.2" cy="161.7" r="1.1" fill="rgba(220,228,230,0.19)"/><circle cx="150.7" cy="114.7" r="0.6" fill="rgba(220,228,230,0.27)"/><circle cx="197.0" cy="116.9" r="0.5" fill="rgba(220,228,230,0.25)"/><circle cx="172.4" cy="138.8" r="1.1" fill="rgba(220,228,230,0.32)"/><circle cx="188.7" cy="142.5" r="0.9" fill="rgba(220,228,230,0.16)"/><circle cx="231.7" cy="154.2" r="1.0" fill="rgba(220,228,230,0.35)"/><circle cx="174.9" cy="126.7" r="0.6" fill="rgba(220,228,230,0.31)"/><circle cx="138.0" cy="102.8" r="0.6" fill="rgba(220,228,230,0.19)"/><circle cx="169.1" cy="101.8" r="0.5" fill="rgba(220,228,230,0.19)"/><circle cx="142.4" cy="124.2" r="0.5" fill="rgba(220,228,230,0.37)"/><circle cx="199.8" cy="108.7" r="0.7" fill="rgba(220,228,230,0.24)"/><circle cx="171.8" cy="106.8" r="1.0" fill="rgba(220,228,230,0.40)"/><circle cx="183.2" cy="132.8" r="0.6" fill="rgba(220,228,230,0.18)"/><circle cx="169.4" cy="117.1" r="1.0" fill="rgba(220,228,230,0.19)"/><circle cx="133.6" cy="166.5" r="0.8" fill="rgba(220,228,230,0.19)"/><circle cx="191.8" cy="99.9" r="0.8" fill="rgba(220,228,230,0.39)"/><circle cx="227.7" cy="148.1" r="0.7" fill="rgba(220,228,230,0.24)"/><circle cx="149.7" cy="153.6" r="0.8" fill="rgba(220,228,230,0.34)"/><circle cx="167.9" cy="114.1" r="1.0" fill="rgba(220,228,230,0.40)"/><circle cx="226.5" cy="156.0" r="1.0" fill="rgba(220,228,230,0.33)"/><circle cx="156.4" cy="135.3" r="0.7" fill="rgba(220,228,230,0.16)"/><circle cx="134.1" cy="118.1" r="0.7" fill="rgba(220,228,230,0.32)"/><circle cx="238.1" cy="130.2" r="1.1" fill="rgba(220,228,230,0.40)"/><circle cx="238.0" cy="124.3" r="0.6" fill="rgba(220,228,230,0.21)"/><circle cx="153.0" cy="112.7" r="0.9" fill="rgba(220,228,230,0.38)"/><circle cx="225.1" cy="132.5" r="0.9" fill="rgba(220,228,230,0.35)"/><circle cx="140.5" cy="145.6" r="1.0" fill="rgba(220,228,230,0.35)"/><circle cx="215.0" cy="132.4" r="0.6" fill="rgba(220,228,230,0.35)"/>
+          </g>
+          <g class="sx-cells">
+            <rect class="sx-cell" data-i="0" x="127" y="94" width="15" height="16" fill="#3d1768"/>
+            <rect class="sx-cell" data-i="1" x="142" y="94" width="15" height="16" fill="#471970"/>
+            <rect class="sx-cell" data-i="2" x="157" y="94" width="15" height="16" fill="#381664"/>
+            <rect class="sx-cell" data-i="3" x="172" y="94" width="15" height="16" fill="#531b7b"/>
+            <rect class="sx-cell" data-i="4" x="187" y="94" width="15" height="16" fill="#93298d"/>
+            <rect class="sx-cell" data-i="5" x="202" y="94" width="15" height="16" fill="#962a8d"/>
+            <rect class="sx-cell" data-i="6" x="217" y="94" width="15" height="16" fill="#81258e"/>
+            <rect class="sx-cell" data-i="7" x="232" y="94" width="15" height="16" fill="#5d1d83"/>
+            <rect class="sx-cell" data-i="8" x="127" y="110" width="15" height="16" fill="#3b1766"/>
+            <rect class="sx-cell" data-i="9" x="142" y="110" width="15" height="16" fill="#351661"/>
+            <rect class="sx-cell" data-i="10" x="157" y="110" width="15" height="16" fill="#511b79"/>
+            <rect class="sx-cell" data-i="11" x="172" y="110" width="15" height="16" fill="#6d208f"/>
+            <rect class="sx-cell" data-i="12" x="187" y="110" width="15" height="16" fill="#e16e56"/>
+            <rect class="sx-cell" data-i="13" x="202" y="110" width="15" height="16" fill="#ffe14d"/>
+            <rect class="sx-cell" data-i="14" x="217" y="110" width="15" height="16" fill="#e97d48"/>
+            <rect class="sx-cell" data-i="15" x="232" y="110" width="15" height="16" fill="#661e8a"/>
+            <rect class="sx-cell" data-i="16" x="127" y="126" width="15" height="16" fill="#40186b"/>
+            <rect class="sx-cell" data-i="17" x="142" y="126" width="15" height="16" fill="#45196f"/>
+            <rect class="sx-cell" data-i="18" x="157" y="126" width="15" height="16" fill="#391765"/>
+            <rect class="sx-cell" data-i="19" x="172" y="126" width="15" height="16" fill="#641e89"/>
+            <rect class="sx-cell" data-i="20" x="187" y="126" width="15" height="16" fill="#c84080"/>
+            <rect class="sx-cell" data-i="21" x="202" y="126" width="15" height="16" fill="#db6260"/>
+            <rect class="sx-cell" data-i="22" x="217" y="126" width="15" height="16" fill="#c43887"/>
+            <rect class="sx-cell" data-i="23" x="232" y="126" width="15" height="16" fill="#671e8c"/>
+            <rect class="sx-cell" data-i="24" x="127" y="142" width="15" height="16" fill="#371663"/>
+            <rect class="sx-cell" data-i="25" x="142" y="142" width="15" height="16" fill="#371663"/>
+            <rect class="sx-cell" data-i="26" x="157" y="142" width="15" height="16" fill="#491973"/>
+            <rect class="sx-cell" data-i="27" x="172" y="142" width="15" height="16" fill="#40186a"/>
+            <rect class="sx-cell" data-i="28" x="187" y="142" width="15" height="16" fill="#4c1a75"/>
+            <rect class="sx-cell" data-i="29" x="202" y="142" width="15" height="16" fill="#651e8a"/>
+            <rect class="sx-cell" data-i="30" x="217" y="142" width="15" height="16" fill="#4c1a75"/>
+            <rect class="sx-cell" data-i="31" x="232" y="142" width="15" height="16" fill="#3f186a"/>
+            <rect class="sx-cell" data-i="32" x="127" y="158" width="15" height="16" fill="#43186d"/>
+            <rect class="sx-cell" data-i="33" x="142" y="158" width="15" height="16" fill="#41186b"/>
+            <rect class="sx-cell" data-i="34" x="157" y="158" width="15" height="16" fill="#32155e"/>
+            <rect class="sx-cell" data-i="35" x="172" y="158" width="15" height="16" fill="#44186e"/>
+            <rect class="sx-cell" data-i="36" x="187" y="158" width="15" height="16" fill="#42186d"/>
+            <rect class="sx-cell" data-i="37" x="202" y="158" width="15" height="16" fill="#341660"/>
+            <rect class="sx-cell" data-i="38" x="217" y="158" width="15" height="16" fill="#45196f"/>
+            <rect class="sx-cell" data-i="39" x="232" y="158" width="15" height="16" fill="#41186c"/>
+          </g>
+          <circle class="sx-lesion" cx="209.5" cy="118.0" r="13" fill="none" stroke="#ffe14d" stroke-width="1.2"/>
+
+          <g clip-path="url(#sxCone)" class="sx-conv-wrap">
+            <circle class="sx-conv" cx="194.5" cy="134.0" r="70" fill="none" stroke="#4CC9F0" stroke-width="2.2"/>
+            <circle class="sx-conv" cx="194.5" cy="134.0" r="70" fill="none" stroke="#4CC9F0" stroke-width="2.2"/>
+            <circle class="sx-conv" cx="194.5" cy="134.0" r="70" fill="none" stroke="#4CC9F0" stroke-width="2.2"/>
+          </g>
+          <g clip-path="url(#sxTissue)" class="sx-radio">
+            <circle class="sx-rip" cx="282" cy="70" r="190" fill="none" stroke="#4AE38A" stroke-width="2"/>
+            <circle class="sx-rip" cx="282" cy="70" r="190" fill="none" stroke="#4AE38A" stroke-width="2"/>
+            <circle class="sx-rip" cx="282" cy="70" r="190" fill="none" stroke="#4AE38A" stroke-width="2"/>
+          </g>
+
+          <g class="sx-spot">
+            <circle r="14" fill="url(#sxGlow)"/>
+            <circle class="sx-core" r="3.6" fill="#4CC9F0"/>
+            <circle class="sx-hop" r="9" fill="none" stroke="#DCE4E6" stroke-width="1"/>
+          </g>
+
+          <g class="sx-probe">
+            <path d="M176.5,12 L212.5,12 L212.5,44 L224.5,54 L224.5,70 L164.5,70 L164.5,54 L176.5,44 Z" fill="#12181c" stroke="#8A97A0" stroke-width="1.2" stroke-linejoin="round"/>
+            <line x1="164.5" y1="64" x2="224.5" y2="64" stroke="#4CC9F0" stroke-width="1.4" opacity="0.8"/>
+          </g>
+          <g class="sx-antenna">
+            <rect x="252" y="66" width="60" height="6" rx="3" fill="#12181c" stroke="#4AE38A" stroke-width="1.2"/>
+            <path d="M312,69 C330,69 336,52 338,28" fill="none" stroke="#8A97A0" stroke-width="1.2"/>
+          </g>
+          <text class="sx-lbl" x="158.5" y="38" text-anchor="end">ULTRASOUND PROBE</text>
+          <text class="sx-lbl" x="252" y="58">RADIO ANTENNA</text>
+
+          <g class="sx-strip">
+            <text class="sx-lbl" x="16" y="203">EVERYWHERE ELSE</text>
+            <path class="sx-smooth" d="M16,211.8 L18,210.7 L20,210.0 L22,209.8 L24,210.3 L26,211.3 L28,212.6 L30,214.0 L32,215.2 L34,216.0 L36,216.2 L38,215.8 L40,214.9 L42,213.6 L44,212.2 L46,211.0 L48,210.1 L50,209.8 L52,210.1 L54,211.0 L56,212.2 L58,213.6 L60,214.9 L62,215.8 L64,216.2 L66,216.0 L68,215.2 L70,214.0 L72,212.6 L74,211.3 L76,210.3 L78,209.8 L80,210.0 L82,210.7 L84,211.8 L86,213.2 L88,214.6 L90,215.6 L92,216.1 L94,216.1 L96,215.4 L98,214.3 L100,213.0 L102,211.6 L104,210.5 L106,209.9 L108,209.9 L110,210.4 L112,211.5 L114,212.8 L116,214.2 L118,215.4 L120,216.1 L122,216.2 L124,215.7 L126,214.7 L128,213.4 L130,212.0 L132,210.8 L134,210.0 L136,209.8 L138,210.2 L140,211.2 L142,212.4 L144,213.8 L146,215.1 L148,215.9 L150,216.2 L152,215.9 L154,215.0 L156,213.8 L158,212.4 L160,211.1 L162,210.2 L164,209.8 L166,210.0 L168,210.8 L170,212.1 L172,213.4 L174,214.8 L176,215.7 L178,216.2 L180,216.0 L182,215.3 L184,214.1 L186,212.7 L188,211.4 L190,210.4 L192,209.8 L194,209.9 L196,210.6 L198,211.7 L200,213.1 L202,214.4 L204,215.5 L206,216.1 L208,216.1 L210,215.6 L212,214.5 L214,213.1 L216,211.8 L218,210.6 L220,209.9 L222,209.8 L224,210.3 L226,211.3 L228,212.7 L230,214.1 L232,215.2 L234,216.0 L236,216.2 L238,215.8 L240,214.8 L242,213.5 L244,212.1 L246,210.9 L248,210.1 L250,209.8 L252,210.1 L254,211.0 L256,212.3 L258,213.7 L260,214.9 L262,215.8 L264,216.2 L266,215.9 L268,215.1 L270,213.9 L272,212.5 L274,211.2 L276,210.3 L278,209.8 L280,210.0 L282,210.7 L284,211.9 L286,213.3 L288,214.6 L290,215.6 L292,216.2 L294,216.1 L296,215.4 L298,214.3 L300,212.9 L302,211.6 L304,210.5 L306,209.9 L308,209.9 L310,210.5 L312,211.5 L314,212.9 L316,214.3 L318,215.4 L320,216.1 L322,216.2 L324,215.7 L326,214.6 L328,213.3 L330,211.9 L332,210.7 L334,210.0 L336,209.8 L338,210.2 L340,211.2 L342,212.5 L344,213.9" fill="none" stroke="#4AE38A" stroke-width="1.4" stroke-opacity="0.55"/>
+            <text class="sx-lbl" x="16" y="228" fill="#4AE38A">TAGGED SPOT</text>
+            <path class="sx-wavy" d="M16,234.1 L18,237.7 L20,241.9 L22,245.4 L24,247.3 L26,247.3 L28,245.7 L30,243.1 L32,240.2 L34,237.4 L36,235.2 L38,233.6 L40,232.7 L42,232.5 L44,232.8 L46,233.4 L48,234.4 L50,235.5 L52,236.7 L54,238.0 L56,239.3 L58,240.6 L60,241.9 L62,243.2 L64,244.4 L66,245.5 L68,246.5 L70,247.2 L72,247.5 L74,247.3 L76,246.5 L78,245.0 L80,242.9 L82,240.1 L84,237.2 L86,234.6 L88,232.8 L90,232.6 L92,234.3 L94,237.6 L96,241.8 L98,245.6 L100,247.5 L102,246.5 L104,242.9 L106,237.9 L108,233.9 L110,232.5 L112,234.7 L114,239.4 L116,244.4 L118,247.3 L120,246.8 L122,243.2 L124,238.3 L126,234.2 L128,232.5 L130,233.7 L132,237.2 L134,241.4 L136,245.0 L138,247.1 L140,247.4 L142,246.0 L144,243.5 L146,240.6 L148,237.7 L150,235.4 L152,233.8 L154,232.8 L156,232.5 L158,232.7 L160,233.3 L162,234.2 L164,235.3 L166,236.5 L168,237.8 L170,239.1 L172,240.4 L174,241.7 L176,243.0 L178,244.3 L180,245.4 L182,246.4 L184,247.1 L186,247.5 L188,247.4 L190,246.7 L192,245.3 L194,243.2 L196,240.5 L198,237.6 L200,234.8 L202,233.0 L204,232.6 L206,234.0 L208,237.2 L210,241.3 L212,245.2 L214,247.4 L216,246.8 L218,243.4 L220,238.5 L222,234.2 L224,232.5 L226,234.3 L228,238.7 L230,243.8 L232,247.1 L234,247.0 L236,243.7 L238,238.9 L240,234.5 L242,232.5 L244,233.5 L246,236.7 L248,240.9 L250,244.7 L252,247.0 L254,247.4 L256,246.2 L258,243.8 L260,240.9 L262,238.1 L264,235.7 L266,233.9 L268,232.9 L270,232.5 L272,232.7 L274,233.2 L276,234.1 L278,235.2 L280,236.4 L282,237.6 L284,238.9 L286,240.3 L288,241.6 L290,242.9 L292,244.1 L294,245.3 L296,246.3 L298,247.0 L300,247.5 L302,247.4 L304,246.8 L306,245.5 L308,243.4 L310,240.8 L312,237.9 L314,235.1 L316,233.1 L318,232.5 L320,233.7 L322,236.7 L324,240.8 L326,244.8 L328,247.2 L330,247.0 L332,243.9 L334,239.1 L336,234.6 L338,232.5 L340,233.9 L342,238.1 L344,243.3" fill="none" stroke="#4AE38A" stroke-width="1.8"/>
+            <rect class="sx-filter" x="10" y="229" width="340" height="24" rx="5" fill="none" stroke="#4CC9F0" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text class="sx-lbl sx-filter-lbl" x="344" y="226" text-anchor="end" fill="#4CC9F0">FILTER</text>
+          </g>
+        </svg>
+        <div class="sx-ctl">
+          <div class="sx-cap"><span class="sx-n" id="sxN">1 / 6</span><span class="sx-t" id="sxT">Sound tags a spot</span></div>
+          <div class="sx-nav"><div class="sx-dots" role="group" aria-label="Animation steps"><button type="button" class="sx-dot" data-step="1" aria-label="Step 1: Sound tags a spot"><span></span></button><button type="button" class="sx-dot" data-step="2" aria-label="Step 2: Radio lights the area"><span></span></button><button type="button" class="sx-dot" data-step="3" aria-label="Step 3: The tagged spot answers differently"><span></span></button><button type="button" class="sx-dot" data-step="4" aria-label="Step 4: Filter isolates that spot"><span></span></button><button type="button" class="sx-dot" data-step="5" aria-label="Step 5: Repeat to paint an image"><span></span></button><button type="button" class="sx-dot" data-step="6" aria-label="Step 6: Perfectly aligned with ultrasound"><span></span></button></div><button type="button" class="sx-replay" id="sxReplay" aria-label="Replay animation">&#8635; Replay</button></div>
         </div>
-        <div class="os-layer" tabindex="0">
-          <div class="os-layer-label">Layer 2 — Physics-Informed Training</div>
-          <div class="os-layer-preview"><p>Embedding electromagnetic wave-propagation constraints into model training — reducing required training data by an estimated 30&ndash;40% versus purely data-driven baselines.</p></div>
+        <ol class="sx-list"><li>Sound tags a spot</li><li>Radio lights the area</li><li>The tagged spot answers differently</li><li>Filter isolates that spot</li><li>Repeat to paint an image</li><li>Perfectly aligned with ultrasound</li></ol>
+        </figure>
+        <p class="dline">Detects cancer, calcification and fluid that ultrasound alone misses.</p>
+        <p class="thesis1">Owned the AI product roadmap to combine ultrasound and radio wave signal data into MRI/CT-equivalent diagnostic-grade images — resulting in a ~4–8dB signal-to-noise improvement over single-modality baseline and enabling detection of cancer, calcification and fluid formation undetectable by conventional ultrasound.</p>
+        <details class="dmore">
+          <summary>How it works</summary>
+          <div class="os-stack model-stack">
+                  <div class="os-cap">Model Stack</div>
+                  <div class="os-layer" tabindex="0">
+                    <div class="os-layer-label">Layer 1 — Image Fusion (CNN)</div>
+                    <div class="os-layer-preview"><p>Fusing ultrasound and electromagnetic signal data into diagnostic-grade images — ~4&ndash;8dB SNR improvement over single-modality baseline.</p></div>
+                  </div>
+                  <div class="os-layer" tabindex="0">
+                    <div class="os-layer-label">Layer 2 — GAN Translation</div>
+                    <div class="os-layer-preview"><p>Conditional GAN with PatchGAN discriminator converting fused data into MRI/CT-equivalent diagnostic images — ~0.70&ndash;0.80 SSIM against paired MRI ground truth.</p></div>
+                  </div>
+                  <div class="os-layer" tabindex="0">
+                    <div class="os-layer-label">Layer 3 — Classification</div>
+                    <div class="os-layer-preview"><p>Transfer-learned ResNet/EfficientNet backbone distinguishing malignant tissue, calcification and fluid formations — ~82&ndash;86% sensitivity, AUC ~0.85 in early clinical validation.</p></div>
+                  </div>
+                  <div class="os-cap os-cap-base">Diagnostic-Grade Output</div>
+                </div>
+        </details>
+      </article>
+
+      <article class="signal-panel dcard">
+        <div class="signal-tag">Deeptech · Whole-body Imaging</div>
+        <h3>Spectroma — Ultra-Wideband Microwave Imaging</h3>
+        <figure class="dviz dsim" id="spSim" data-beat="1">
+        <svg class="sp-svg" viewBox="0 0 360 256" role="img" aria-label="Animation: a short microwave pulse crosses the body, sensors all around listen to how it bends, and physics-guided AI rebuilds the image">
+          <defs>
+            <clipPath id="spDisc"><circle cx="180" cy="128" r="91"/></clipPath>
+            <clipPath id="spImg"><circle cx="180" cy="128" r="60"/></clipPath>
+            <radialGradient id="spSoft"><stop offset="0" stop-color="#fff" stop-opacity="0.75"/><stop offset="0.5" stop-color="#9fd8e8" stop-opacity="0.28"/><stop offset="1" stop-color="#4CC9F0" stop-opacity="0"/></radialGradient>
+            <radialGradient id="spImgBg"><stop offset="0" stop-color="#16222a"/><stop offset="1" stop-color="#080c0f"/></radialGradient>
+          </defs>
+
+          <circle cx="180" cy="128" r="94" fill="none" stroke="rgba(220,228,230,0.14)" stroke-dasharray="2 4"/>
+
+          <g class="sp-body">
+            <ellipse cx="180" cy="128" rx="64" ry="46" fill="rgba(76,201,240,0.06)" stroke="#8A97A0" stroke-width="1.3"/>
+            <ellipse cx="155" cy="124" rx="14" ry="20" fill="rgba(220,228,230,0.05)" stroke="rgba(220,228,230,0.18)"/>
+            <ellipse cx="205" cy="124" rx="14" ry="20" fill="rgba(220,228,230,0.05)" stroke="rgba(220,228,230,0.18)"/>
+            <circle cx="180" cy="153" r="5" fill="rgba(220,228,230,0.10)" stroke="rgba(220,228,230,0.22)"/>
+            <circle class="sp-incl" cx="178" cy="134" r="7" fill="rgba(74,227,138,0.25)" stroke="#4AE38A" stroke-width="1.2"/>
+          </g>
+
+          <g clip-path="url(#spDisc)">
+            <g class="sp-pulse" id="spPulse" style="transform:translate(86.0px,128.0px)">
+              <circle class="sp-pc" r="190" fill="none" stroke="#4CC9F0" stroke-width="2"/>
+              <circle class="sp-pc" r="190" fill="none" stroke="#46DCC8" stroke-width="2"/>
+              <circle class="sp-pc" r="190" fill="none" stroke="#4AE38A" stroke-width="2"/>
+            </g>
+            <g class="sp-scat" style="transform:translate(178px,134px)">
+              <circle class="sp-sc" r="80" fill="none" stroke="#4AE38A" stroke-width="1.6"/>
+              <circle class="sp-sc" r="80" fill="none" stroke="#4AE38A" stroke-width="1.6"/>
+            </g>
+          </g>
+
+          <g class="sp-img" clip-path="url(#spImg)">
+            <circle cx="180" cy="128" r="60" fill="url(#spImgBg)"/>
+            <g class="sp-noise"><circle cx="138.5" cy="140.8" r="1.6" fill="rgba(220,228,230,0.48)"/><circle cx="135.6" cy="125.8" r="0.9" fill="rgba(220,228,230,0.51)"/><circle cx="144.6" cy="90.4" r="0.8" fill="rgba(220,228,230,0.38)"/><circle cx="223.9" cy="156.1" r="1.4" fill="rgba(220,228,230,0.23)"/><circle cx="236.6" cy="121.6" r="1.4" fill="rgba(220,228,230,0.57)"/><circle cx="183.9" cy="133.9" r="1.2" fill="rgba(220,228,230,0.24)"/><circle cx="190.5" cy="154.5" r="0.7" fill="rgba(220,228,230,0.48)"/><circle cx="130.4" cy="147.4" r="1.2" fill="rgba(220,228,230,0.58)"/><circle cx="132.8" cy="128.1" r="1.2" fill="rgba(220,228,230,0.37)"/><circle cx="237.9" cy="127.1" r="1.5" fill="rgba(220,228,230,0.62)"/><circle cx="168.9" cy="153.5" r="1.0" fill="rgba(220,228,230,0.24)"/><circle cx="183.7" cy="91.5" r="1.5" fill="rgba(220,228,230,0.43)"/><circle cx="231.5" cy="114.1" r="0.7" fill="rgba(220,228,230,0.33)"/><circle cx="213.6" cy="106.7" r="1.7" fill="rgba(220,228,230,0.44)"/><circle cx="221.3" cy="148.4" r="1.5" fill="rgba(220,228,230,0.36)"/><circle cx="208.6" cy="145.4" r="1.7" fill="rgba(220,228,230,0.65)"/><circle cx="201.2" cy="147.4" r="0.8" fill="rgba(220,228,230,0.24)"/><circle cx="187.1" cy="104.6" r="1.3" fill="rgba(220,228,230,0.47)"/><circle cx="198.1" cy="174.2" r="0.8" fill="rgba(220,228,230,0.59)"/><circle cx="208.0" cy="153.1" r="0.9" fill="rgba(220,228,230,0.36)"/><circle cx="231.1" cy="118.5" r="1.0" fill="rgba(220,228,230,0.73)"/><circle cx="188.9" cy="163.3" r="1.6" fill="rgba(220,228,230,0.59)"/><circle cx="226.6" cy="162.0" r="0.9" fill="rgba(220,228,230,0.35)"/><circle cx="184.7" cy="95.1" r="1.0" fill="rgba(220,228,230,0.24)"/><circle cx="217.4" cy="151.8" r="0.9" fill="rgba(220,228,230,0.56)"/><circle cx="153.0" cy="156.2" r="1.7" fill="rgba(220,228,230,0.49)"/><circle cx="131.8" cy="103.6" r="0.9" fill="rgba(220,228,230,0.29)"/><circle cx="224.0" cy="99.5" r="0.9" fill="rgba(220,228,230,0.31)"/><circle cx="176.3" cy="71.9" r="0.9" fill="rgba(220,228,230,0.77)"/><circle cx="213.3" cy="97.6" r="1.1" fill="rgba(220,228,230,0.26)"/><circle cx="235.2" cy="141.7" r="0.9" fill="rgba(220,228,230,0.62)"/><circle cx="177.7" cy="180.6" r="1.3" fill="rgba(220,228,230,0.38)"/><circle cx="202.2" cy="171.9" r="0.8" fill="rgba(220,228,230,0.34)"/><circle cx="130.1" cy="108.5" r="1.3" fill="rgba(220,228,230,0.37)"/><circle cx="202.7" cy="115.0" r="0.7" fill="rgba(220,228,230,0.36)"/><circle cx="166.6" cy="132.8" r="0.9" fill="rgba(220,228,230,0.42)"/><circle cx="161.1" cy="118.8" r="1.1" fill="rgba(220,228,230,0.73)"/><circle cx="226.7" cy="122.2" r="1.4" fill="rgba(220,228,230,0.55)"/><circle cx="186.9" cy="136.4" r="0.7" fill="rgba(220,228,230,0.75)"/><circle cx="162.7" cy="73.8" r="0.7" fill="rgba(220,228,230,0.58)"/><circle cx="130.7" cy="133.5" r="1.0" fill="rgba(220,228,230,0.80)"/><circle cx="218.2" cy="147.5" r="1.4" fill="rgba(220,228,230,0.74)"/><circle cx="176.1" cy="79.5" r="1.5" fill="rgba(220,228,230,0.75)"/><circle cx="151.3" cy="166.5" r="1.6" fill="rgba(220,228,230,0.72)"/><circle cx="135.3" cy="153.7" r="1.6" fill="rgba(220,228,230,0.54)"/><circle cx="154.6" cy="102.7" r="1.3" fill="rgba(220,228,230,0.57)"/><circle cx="220.6" cy="150.4" r="1.7" fill="rgba(220,228,230,0.73)"/><circle cx="175.1" cy="92.2" r="1.4" fill="rgba(220,228,230,0.55)"/><circle cx="130.6" cy="147.4" r="0.8" fill="rgba(220,228,230,0.65)"/><circle cx="224.2" cy="136.4" r="1.2" fill="rgba(220,228,230,0.34)"/><circle cx="167.0" cy="89.2" r="1.3" fill="rgba(220,228,230,0.75)"/><circle cx="179.8" cy="134.2" r="1.0" fill="rgba(220,228,230,0.61)"/><circle cx="187.0" cy="150.8" r="1.6" fill="rgba(220,228,230,0.60)"/><circle cx="128.8" cy="147.5" r="1.0" fill="rgba(220,228,230,0.60)"/><circle cx="192.1" cy="164.1" r="1.5" fill="rgba(220,228,230,0.75)"/><circle cx="206.3" cy="103.4" r="1.3" fill="rgba(220,228,230,0.39)"/><circle cx="206.8" cy="158.9" r="1.5" fill="rgba(220,228,230,0.71)"/><circle cx="166.4" cy="73.1" r="1.0" fill="rgba(220,228,230,0.30)"/><circle cx="151.0" cy="137.3" r="0.9" fill="rgba(220,228,230,0.45)"/><circle cx="151.3" cy="99.0" r="1.0" fill="rgba(220,228,230,0.70)"/><circle cx="218.8" cy="123.6" r="0.8" fill="rgba(220,228,230,0.22)"/><circle cx="188.2" cy="119.5" r="1.4" fill="rgba(220,228,230,0.54)"/><circle cx="161.3" cy="176.1" r="0.7" fill="rgba(220,228,230,0.28)"/><circle cx="171.2" cy="130.6" r="1.5" fill="rgba(220,228,230,0.34)"/><circle cx="188.0" cy="137.7" r="1.3" fill="rgba(220,228,230,0.47)"/><circle cx="147.9" cy="93.8" r="1.5" fill="rgba(220,228,230,0.78)"/><circle cx="169.6" cy="104.3" r="1.2" fill="rgba(220,228,230,0.31)"/><circle cx="219.8" cy="130.7" r="1.4" fill="rgba(220,228,230,0.31)"/><circle cx="175.2" cy="161.8" r="1.4" fill="rgba(220,228,230,0.51)"/><circle cx="142.0" cy="94.8" r="1.1" fill="rgba(220,228,230,0.68)"/><circle cx="194.2" cy="118.5" r="1.6" fill="rgba(220,228,230,0.63)"/><circle cx="206.8" cy="156.5" r="1.3" fill="rgba(220,228,230,0.75)"/><circle cx="148.7" cy="158.6" r="1.6" fill="rgba(220,228,230,0.68)"/><circle cx="217.1" cy="114.4" r="1.4" fill="rgba(220,228,230,0.32)"/><circle cx="170.8" cy="76.3" r="1.3" fill="rgba(220,228,230,0.63)"/><circle cx="192.6" cy="181.6" r="1.7" fill="rgba(220,228,230,0.79)"/><circle cx="129.8" cy="116.1" r="1.0" fill="rgba(220,228,230,0.75)"/><circle cx="201.1" cy="101.0" r="0.8" fill="rgba(220,228,230,0.46)"/><circle cx="131.7" cy="112.2" r="1.2" fill="rgba(220,228,230,0.22)"/><circle cx="185.3" cy="114.3" r="1.5" fill="rgba(220,228,230,0.30)"/><circle cx="153.8" cy="172.3" r="0.8" fill="rgba(220,228,230,0.29)"/><circle cx="130.9" cy="122.9" r="1.5" fill="rgba(220,228,230,0.61)"/><circle cx="218.4" cy="114.4" r="1.6" fill="rgba(220,228,230,0.25)"/><circle cx="187.5" cy="169.4" r="1.0" fill="rgba(220,228,230,0.64)"/><circle cx="153.0" cy="95.9" r="1.5" fill="rgba(220,228,230,0.54)"/><circle cx="166.5" cy="161.2" r="1.5" fill="rgba(220,228,230,0.74)"/><circle cx="193.9" cy="179.7" r="1.7" fill="rgba(220,228,230,0.51)"/><circle cx="156.7" cy="116.5" r="1.2" fill="rgba(220,228,230,0.50)"/><circle cx="172.4" cy="122.1" r="1.7" fill="rgba(220,228,230,0.51)"/><circle cx="137.9" cy="158.4" r="1.3" fill="rgba(220,228,230,0.49)"/><circle cx="174.6" cy="114.1" r="1.2" fill="rgba(220,228,230,0.45)"/><circle cx="233.7" cy="113.1" r="1.0" fill="rgba(220,228,230,0.48)"/><circle cx="206.7" cy="155.3" r="1.5" fill="rgba(220,228,230,0.74)"/><circle cx="147.7" cy="132.8" r="0.9" fill="rgba(220,228,230,0.57)"/><circle cx="198.6" cy="118.6" r="1.5" fill="rgba(220,228,230,0.21)"/><circle cx="189.5" cy="154.0" r="1.4" fill="rgba(220,228,230,0.39)"/><circle cx="151.9" cy="164.0" r="0.8" fill="rgba(220,228,230,0.64)"/><circle cx="209.7" cy="156.9" r="1.0" fill="rgba(220,228,230,0.32)"/><circle cx="142.4" cy="120.7" r="1.1" fill="rgba(220,228,230,0.45)"/><circle cx="157.2" cy="123.8" r="0.9" fill="rgba(220,228,230,0.58)"/><circle cx="152.8" cy="95.7" r="1.6" fill="rgba(220,228,230,0.57)"/><circle cx="197.4" cy="106.1" r="1.4" fill="rgba(220,228,230,0.69)"/><circle cx="206.7" cy="109.3" r="1.0" fill="rgba(220,228,230,0.75)"/><circle cx="191.5" cy="184.8" r="1.6" fill="rgba(220,228,230,0.28)"/><circle cx="183.3" cy="177.3" r="1.0" fill="rgba(220,228,230,0.26)"/><circle cx="198.6" cy="95.2" r="1.5" fill="rgba(220,228,230,0.28)"/><circle cx="140.7" cy="155.5" r="0.7" fill="rgba(220,228,230,0.32)"/><circle cx="157.2" cy="77.6" r="1.7" fill="rgba(220,228,230,0.27)"/><circle cx="129.5" cy="126.2" r="1.2" fill="rgba(220,228,230,0.61)"/><circle cx="185.8" cy="142.3" r="0.8" fill="rgba(220,228,230,0.22)"/><circle cx="140.6" cy="114.7" r="1.3" fill="rgba(220,228,230,0.29)"/><circle cx="190.5" cy="152.0" r="1.5" fill="rgba(220,228,230,0.79)"/><circle cx="196.0" cy="120.1" r="0.8" fill="rgba(220,228,230,0.77)"/><circle cx="130.7" cy="140.0" r="1.0" fill="rgba(220,228,230,0.48)"/><circle cx="142.1" cy="124.4" r="1.3" fill="rgba(220,228,230,0.21)"/><circle cx="163.9" cy="77.2" r="0.9" fill="rgba(220,228,230,0.47)"/><circle cx="177.5" cy="91.2" r="0.9" fill="rgba(220,228,230,0.30)"/><circle cx="172.8" cy="127.4" r="1.6" fill="rgba(220,228,230,0.68)"/><circle cx="164.9" cy="76.4" r="1.3" fill="rgba(220,228,230,0.44)"/><circle cx="146.6" cy="103.9" r="1.7" fill="rgba(220,228,230,0.68)"/><circle cx="177.1" cy="183.3" r="1.4" fill="rgba(220,228,230,0.67)"/><circle cx="194.6" cy="94.1" r="1.6" fill="rgba(220,228,230,0.73)"/><circle cx="162.7" cy="80.2" r="1.5" fill="rgba(220,228,230,0.44)"/><circle cx="177.4" cy="112.8" r="1.0" fill="rgba(220,228,230,0.48)"/><circle cx="214.5" cy="130.3" r="1.3" fill="rgba(220,228,230,0.57)"/><circle cx="186.3" cy="184.0" r="1.4" fill="rgba(220,228,230,0.40)"/><circle cx="156.5" cy="91.1" r="1.2" fill="rgba(220,228,230,0.43)"/><circle cx="226.5" cy="128.0" r="1.4" fill="rgba(220,228,230,0.66)"/><circle cx="188.7" cy="126.9" r="1.3" fill="rgba(220,228,230,0.64)"/><circle cx="178.5" cy="164.7" r="0.8" fill="rgba(220,228,230,0.32)"/><circle cx="167.1" cy="140.8" r="1.0" fill="rgba(220,228,230,0.74)"/><circle cx="140.7" cy="115.2" r="1.7" fill="rgba(220,228,230,0.54)"/><circle cx="226.3" cy="126.6" r="1.5" fill="rgba(220,228,230,0.25)"/><circle cx="138.7" cy="98.9" r="0.7" fill="rgba(220,228,230,0.76)"/><circle cx="201.4" cy="161.6" r="0.9" fill="rgba(220,228,230,0.50)"/><circle cx="169.3" cy="119.0" r="1.6" fill="rgba(220,228,230,0.45)"/><circle cx="135.8" cy="120.5" r="1.1" fill="rgba(220,228,230,0.37)"/><circle cx="155.6" cy="92.1" r="1.0" fill="rgba(220,228,230,0.63)"/><circle cx="178.0" cy="134.6" r="0.9" fill="rgba(220,228,230,0.23)"/><circle cx="207.9" cy="170.0" r="1.1" fill="rgba(220,228,230,0.74)"/><circle cx="179.9" cy="115.0" r="1.7" fill="rgba(220,228,230,0.77)"/><circle cx="229.4" cy="152.6" r="1.1" fill="rgba(220,228,230,0.49)"/><circle cx="208.2" cy="123.2" r="1.2" fill="rgba(220,228,230,0.76)"/><circle cx="173.2" cy="88.9" r="1.7" fill="rgba(220,228,230,0.69)"/><circle cx="164.3" cy="116.1" r="1.3" fill="rgba(220,228,230,0.47)"/><circle cx="183.8" cy="140.7" r="1.2" fill="rgba(220,228,230,0.27)"/><circle cx="135.6" cy="144.7" r="1.2" fill="rgba(220,228,230,0.36)"/><circle cx="147.3" cy="109.4" r="1.5" fill="rgba(220,228,230,0.52)"/><circle cx="236.6" cy="127.1" r="1.4" fill="rgba(220,228,230,0.34)"/><circle cx="221.4" cy="163.9" r="1.5" fill="rgba(220,228,230,0.57)"/></g>
+            <g class="sp-soft"><circle cx="180" cy="128" r="44" fill="url(#spSoft)"/></g>
+            <g class="sp-sharp"><circle cx="180" cy="128" r="52" fill="none" stroke="rgba(220,228,230,0.22)" stroke-width="2.2" stroke-dasharray="85 5"/><circle cx="180" cy="128" r="45" fill="none" stroke="rgba(220,228,230,0.38)" stroke-width="1.2" stroke-dasharray="74 7"/><circle cx="180" cy="128" r="38" fill="none" stroke="rgba(220,228,230,0.2)" stroke-width="2.6" stroke-dasharray="112 8"/><circle cx="180" cy="128" r="31" fill="none" stroke="rgba(220,228,230,0.42)" stroke-width="1.4" stroke-dasharray="115 4"/><circle cx="180" cy="128" r="24" fill="none" stroke="rgba(220,228,230,0.28)" stroke-width="2.2" stroke-dasharray="75 9"/><circle cx="180" cy="128" r="17" fill="none" stroke="rgba(220,228,230,0.5)" stroke-width="1.2" stroke-dasharray="70 4"/><line x1="180" y1="128" x2="238.0" y2="128.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="230.2" y2="157.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="209.0" y2="178.2" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="180.0" y2="186.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="151.0" y2="178.2" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="129.8" y2="157.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="122.0" y2="128.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="129.8" y2="99.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="151.0" y2="77.8" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="180.0" y2="70.0" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="209.0" y2="77.8" stroke="rgba(220,228,230,0.07)"/><line x1="180" y1="128" x2="230.2" y2="99.0" stroke="rgba(220,228,230,0.07)"/><circle cx="223.4" cy="128.2" r="1.1" fill="rgba(220,228,230,0.26)"/><circle cx="197.6" cy="140.3" r="0.6" fill="rgba(220,228,230,0.28)"/><circle cx="134.6" cy="83.7" r="0.8" fill="rgba(220,228,230,0.28)"/><circle cx="204.6" cy="167.6" r="0.7" fill="rgba(220,228,230,0.27)"/><circle cx="226.2" cy="126.5" r="0.8" fill="rgba(220,228,230,0.30)"/><circle cx="179.5" cy="92.8" r="1.2" fill="rgba(220,228,230,0.44)"/><circle cx="174.9" cy="158.9" r="1.2" fill="rgba(220,228,230,0.43)"/><circle cx="174.7" cy="151.7" r="0.9" fill="rgba(220,228,230,0.25)"/><circle cx="146.7" cy="160.3" r="1.0" fill="rgba(220,228,230,0.29)"/><circle cx="204.9" cy="159.3" r="0.7" fill="rgba(220,228,230,0.40)"/><circle cx="187.7" cy="124.4" r="0.8" fill="rgba(220,228,230,0.36)"/><circle cx="173.5" cy="134.5" r="1.2" fill="rgba(220,228,230,0.34)"/><circle cx="211.1" cy="80.9" r="0.8" fill="rgba(220,228,230,0.47)"/><circle cx="190.0" cy="146.7" r="0.9" fill="rgba(220,228,230,0.43)"/><circle cx="163.5" cy="164.6" r="0.8" fill="rgba(220,228,230,0.40)"/><circle cx="163.4" cy="167.0" r="0.8" fill="rgba(220,228,230,0.33)"/><circle cx="189.1" cy="166.6" r="1.1" fill="rgba(220,228,230,0.28)"/><circle cx="182.9" cy="175.3" r="0.9" fill="rgba(220,228,230,0.27)"/><circle cx="224.9" cy="150.1" r="1.0" fill="rgba(220,228,230,0.23)"/><circle cx="211.5" cy="82.3" r="1.1" fill="rgba(220,228,230,0.38)"/><circle cx="208.4" cy="150.9" r="0.9" fill="rgba(220,228,230,0.32)"/><circle cx="146.9" cy="136.7" r="0.7" fill="rgba(220,228,230,0.23)"/><circle cx="175.6" cy="162.1" r="1.2" fill="rgba(220,228,230,0.27)"/><circle cx="137.5" cy="95.2" r="0.8" fill="rgba(220,228,230,0.21)"/><circle cx="212.8" cy="120.6" r="1.0" fill="rgba(220,228,230,0.29)"/><circle cx="184.4" cy="112.1" r="0.8" fill="rgba(220,228,230,0.23)"/><circle cx="162.1" cy="82.5" r="1.1" fill="rgba(220,228,230,0.23)"/><circle cx="210.4" cy="120.5" r="1.1" fill="rgba(220,228,230,0.35)"/><circle cx="219.1" cy="112.5" r="0.9" fill="rgba(220,228,230,0.31)"/><circle cx="209.5" cy="112.0" r="0.7" fill="rgba(220,228,230,0.35)"/><circle cx="209.3" cy="87.0" r="1.0" fill="rgba(220,228,230,0.21)"/><circle cx="204.7" cy="174.6" r="0.8" fill="rgba(220,228,230,0.20)"/><circle cx="168.3" cy="88.6" r="0.9" fill="rgba(220,228,230,0.36)"/><circle cx="134.3" cy="114.8" r="0.6" fill="rgba(220,228,230,0.23)"/><circle cx="220.7" cy="167.9" r="0.8" fill="rgba(220,228,230,0.25)"/><circle cx="193.0" cy="145.7" r="0.8" fill="rgba(220,228,230,0.32)"/><circle cx="182.8" cy="106.3" r="1.2" fill="rgba(220,228,230,0.34)"/><circle cx="202.2" cy="109.1" r="0.7" fill="rgba(220,228,230,0.48)"/><circle cx="219.6" cy="152.3" r="0.6" fill="rgba(220,228,230,0.34)"/><circle cx="208.8" cy="110.0" r="0.7" fill="rgba(220,228,230,0.31)"/><circle cx="180" cy="128" r="16" fill="url(#spSoft)"/><ellipse cx="180" cy="128" rx="13" ry="9" fill="rgba(255,255,255,0.55)"/><ellipse cx="180" cy="128" rx="7" ry="5" fill="rgba(255,255,255,0.95)"/><ellipse cx="171" cy="133" rx="5" ry="3" fill="rgba(255,255,255,0.7)" transform="rotate(-25 171 133)"/><ellipse cx="190" cy="123" rx="6" ry="2.6" fill="rgba(255,255,255,0.65)" transform="rotate(-20 190 123)"/><ellipse cx="179" cy="117" rx="2.4" ry="5.5" fill="rgba(255,255,255,0.6)"/><ellipse cx="182" cy="140" rx="2.2" ry="4.5" fill="rgba(255,255,255,0.55)"/></g>
+          </g>
+          <circle class="sp-imgring" cx="180" cy="128" r="60" fill="none" stroke="rgba(220,228,230,0.3)"/>
+
+          <g class="sp-ai" fill="none"><g stroke="rgba(76,201,240,0.55)" stroke-width="0.8"><line x1="158" y1="116" x2="180" y2="110"/><line x1="158" y1="116" x2="180" y2="122"/><line x1="158" y1="116" x2="180" y2="134"/><line x1="158" y1="116" x2="180" y2="146"/><line x1="158" y1="128" x2="180" y2="110"/><line x1="158" y1="128" x2="180" y2="122"/><line x1="158" y1="128" x2="180" y2="134"/><line x1="158" y1="128" x2="180" y2="146"/><line x1="158" y1="140" x2="180" y2="110"/><line x1="158" y1="140" x2="180" y2="122"/><line x1="158" y1="140" x2="180" y2="134"/><line x1="158" y1="140" x2="180" y2="146"/><line x1="180" y1="110" x2="202" y2="116"/><line x1="180" y1="110" x2="202" y2="128"/><line x1="180" y1="110" x2="202" y2="140"/><line x1="180" y1="122" x2="202" y2="116"/><line x1="180" y1="122" x2="202" y2="128"/><line x1="180" y1="122" x2="202" y2="140"/><line x1="180" y1="134" x2="202" y2="116"/><line x1="180" y1="134" x2="202" y2="128"/><line x1="180" y1="134" x2="202" y2="140"/><line x1="180" y1="146" x2="202" y2="116"/><line x1="180" y1="146" x2="202" y2="128"/><line x1="180" y1="146" x2="202" y2="140"/></g><circle cx="158" cy="116" r="2.6" fill="#4CC9F0"/><circle cx="158" cy="128" r="2.6" fill="#4CC9F0"/><circle cx="158" cy="140" r="2.6" fill="#4CC9F0"/><circle cx="180" cy="110" r="2.6" fill="#4CC9F0"/><circle cx="180" cy="122" r="2.6" fill="#4CC9F0"/><circle cx="180" cy="134" r="2.6" fill="#4CC9F0"/><circle cx="180" cy="146" r="2.6" fill="#4CC9F0"/><circle cx="202" cy="116" r="2.6" fill="#4CC9F0"/><circle cx="202" cy="128" r="2.6" fill="#4CC9F0"/><circle cx="202" cy="140" r="2.6" fill="#4CC9F0"/>
+            <text class="sx-lbl" x="180" y="162" text-anchor="middle" fill="#4CC9F0">PHYSICS + AI</text></g>
+
+          <g class="sp-data"><line class="sp-bar" data-k="0" x1="281.0" y1="128.0" x2="297.0" y2="128.0" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:281.0px 128.0px"/><line class="sp-bar" data-k="1" x1="273.3" y1="166.7" x2="288.1" y2="172.8" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:273.3px 166.7px"/><line class="sp-bar" data-k="2" x1="251.4" y1="199.4" x2="262.7" y2="210.7" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:251.4px 199.4px"/><line class="sp-bar" data-k="3" x1="218.7" y1="221.3" x2="224.8" y2="236.1" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:218.7px 221.3px"/><line class="sp-bar" data-k="4" x1="180.0" y1="229.0" x2="180.0" y2="245.0" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:180.0px 229.0px"/><line class="sp-bar" data-k="5" x1="141.3" y1="221.3" x2="135.2" y2="236.1" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:141.3px 221.3px"/><line class="sp-bar" data-k="6" x1="108.6" y1="199.4" x2="97.3" y2="210.7" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:108.6px 199.4px"/><line class="sp-bar" data-k="7" x1="86.7" y1="166.7" x2="71.9" y2="172.8" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:86.7px 166.7px"/><line class="sp-bar" data-k="8" x1="79.0" y1="128.0" x2="63.0" y2="128.0" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:79.0px 128.0px"/><line class="sp-bar" data-k="9" x1="86.7" y1="89.3" x2="71.9" y2="83.2" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:86.7px 89.3px"/><line class="sp-bar" data-k="10" x1="108.6" y1="56.6" x2="97.3" y2="45.3" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:108.6px 56.6px"/><line class="sp-bar" data-k="11" x1="141.3" y1="34.7" x2="135.2" y2="19.9" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:141.3px 34.7px"/><line class="sp-bar" data-k="12" x1="180.0" y1="27.0" x2="180.0" y2="11.0" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:180.0px 27.0px"/><line class="sp-bar" data-k="13" x1="218.7" y1="34.7" x2="224.8" y2="19.9" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:218.7px 34.7px"/><line class="sp-bar" data-k="14" x1="251.4" y1="56.6" x2="262.7" y2="45.3" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:251.4px 56.6px"/><line class="sp-bar" data-k="15" x1="273.3" y1="89.3" x2="288.1" y2="83.2" stroke="#4AE38A" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke" style="transform-origin:273.3px 89.3px"/></g>
+          <g class="sp-sens"><circle class="sp-sen" data-k="0" cx="274.0" cy="128.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="1" cx="266.8" cy="164.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="2" cx="246.5" cy="194.5" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="3" cx="216.0" cy="214.8" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="4" cx="180.0" cy="222.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="5" cx="144.0" cy="214.8" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="6" cx="113.5" cy="194.5" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="7" cx="93.2" cy="164.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="8" cx="86.0" cy="128.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="9" cx="93.2" cy="92.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="10" cx="113.5" cy="61.5" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="11" cx="144.0" cy="41.2" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="12" cx="180.0" cy="34.0" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="13" cx="216.0" cy="41.2" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="14" cx="246.5" cy="61.5" r="3" fill="#4AE38A"/><circle class="sp-sen" data-k="15" cx="266.8" cy="92.0" r="3" fill="#4AE38A"/></g>
+          <g class="sp-tx" id="spTx" style="transform:translate(86.0px,128.0px)"><circle r="11" fill="url(#spSoft)"/><circle r="5" fill="#4CC9F0" stroke="#DCE4E6" stroke-width="1"/></g>
+
+          <circle cx="262" cy="14" r="3.4" fill="#4CC9F0"/><text class="sx-lbl" x="269" y="17">TRANSMITTER</text>
+          <circle cx="262" cy="27" r="3" fill="#4AE38A"/><text class="sx-lbl" x="269" y="30">SENSORS</text>
+
+          <g class="sp-pills">
+            <rect x="6" y="20" width="84" height="20" rx="10"/><text x="48" y="33.5" text-anchor="middle">Non-invasive</text>
+            <rect x="270" y="222" width="84" height="20" rx="10"/><text x="312" y="235.5" text-anchor="middle">Non-ionizing</text>
+            <rect x="6" y="222" width="90" height="20" rx="10"/><text x="51" y="235.5" text-anchor="middle">Non-radiation</text>
+          </g>
+        </svg>
+        <div class="sx-ctl">
+          <div class="sx-cap"><span class="sx-n" id="spN">1 / 6</span><span class="sx-t" id="spT">A short pulse goes in</span></div>
+          <div class="sx-nav"><div class="sx-dots" role="group" aria-label="Animation steps"><button type="button" class="sx-dot" data-step="1" aria-label="Step 1: A short pulse goes in"><span></span></button><button type="button" class="sx-dot" data-step="2" aria-label="Step 2: It bends around what's inside"><span></span></button><button type="button" class="sx-dot" data-step="3" aria-label="Step 3: Sensors listen all around"><span></span></button><button type="button" class="sx-dot" data-step="4" aria-label="Step 4: Repeat from every angle"><span></span></button><button type="button" class="sx-dot" data-step="5" aria-label="Step 5: Physics-guided AI rebuilds it"><span></span></button><button type="button" class="sx-dot" data-step="6" aria-label="Step 6: Image in under 5 minutes"><span></span></button></div><button type="button" class="sx-replay" id="spReplay" aria-label="Replay animation">&#8635; Replay</button></div>
         </div>
-        <div class="os-layer" tabindex="0">
-          <div class="os-layer-label">Layer 3 — Classification &amp; Signal Processing</div>
-          <div class="os-layer-preview"><p>Distinguishing malignant/benign tissue from dielectric-contrast signatures — ~80% sensitivity, AUC ~0.82, signal-to-clutter improved ~8&ndash;12dB.</p></div>
-        </div>
-        <div class="os-cap os-cap-base">2D &rarr; 3D Volumetric Roadmap</div>
-      </div>
+        <ol class="sx-list"><li>A short pulse goes in</li><li>It bends around what's inside</li><li>Sensors listen all around</li><li>Repeat from every angle</li><li>Physics-guided AI rebuilds it</li><li>Image in under 5 minutes</li></ol>
+        </figure>
+        <p class="dline">Sees through tissue in under 5 minutes, with no radiation.</p>
+        <p class="thesis1 sp-lead">Built 3 prototypes, raised non-dilutive funding and successfully licensed the technology to Neko Health, the preventive-healthcare company backed by Spotify founder Daniel Ek.</p>
+        <p class="thesis1">Owned the technical strategy for solving the inverse scattering problem in UWB microwave tissue imaging, prioritising reconstruction speed as a core product requirement and championing a physics-informed neural network approach to cut required training data.</p>
+        <p class="thesis1">Trained and validated deep learning models across local GPU workstations (prototyping) and AWS cloud infrastructure (distributed multi-GPU training) for both ventures.</p>
+        <details class="dmore">
+          <summary>How it works</summary>
+          <div class="os-stack model-stack">
+                  <div class="os-cap">Model Stack</div>
+                  <div class="os-layer" tabindex="0">
+                    <div class="os-layer-label">Layer 1 — Inverse Scattering Reconstruction</div>
+                    <div class="os-layer-preview"><p>Physics-informed deep learning delivering single-pass reconstruction in under 5 minutes — ~0.65&ndash;0.75 SSIM against phantom ground truth.</p></div>
+                  </div>
+                  <div class="os-layer" tabindex="0">
+                    <div class="os-layer-label">Layer 2 — Physics-Informed Training</div>
+                    <div class="os-layer-preview"><p>Embedding electromagnetic wave-propagation constraints into model training — reducing required training data by an estimated 30&ndash;40% versus purely data-driven baselines.</p></div>
+                  </div>
+                  <div class="os-layer" tabindex="0">
+                    <div class="os-layer-label">Layer 3 — Classification &amp; Signal Processing</div>
+                    <div class="os-layer-preview"><p>Distinguishing malignant/benign tissue from dielectric-contrast signatures — ~80% sensitivity, AUC ~0.82, signal-to-clutter improved ~8&ndash;12dB.</p></div>
+                  </div>
+                  <div class="os-cap os-cap-base">2D &rarr; 3D Volumetric Roadmap</div>
+                </div>
+        </details>
+      </article>
     </div>
 
     <div class="signal-panel reveal reveal-d2">
@@ -2199,6 +2515,142 @@
     requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
+</script>
+<script>
+(function(){
+  const root=document.getElementById('sxSim'); if(!root) return;
+  const cells=[...root.querySelectorAll('.sx-cell')];
+  const spot=root.querySelector('.sx-spot');
+  const nEl=document.getElementById('sxN'), tEl=document.getElementById('sxT');
+  const dots=[...root.querySelectorAll('.sx-dot')];
+  const caps=['Sound tags a spot','Radio lights the area','The tagged spot answers differently','Filter isolates that spot','Repeat to paint an image','Perfectly aligned with ultrasound'];
+  const dur=[2200,2200,2200,2000,3400,2600];
+  const X0=127,Y0=94,CW=15,CH=16,NC=8,NR=5;
+  const SPOT=[194.5,134];
+  const rm=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let beat=1, timer=null, hop=null, visible=false, started=false;
+
+  function place(x,y){ spot.style.transform='translate('+x+'px,'+y+'px)'; }
+  function clearTimers(){ clearTimeout(timer); clearInterval(hop); timer=hop=null; }
+  function setCells(n){ cells.forEach((c,i)=> c.classList.toggle('on', i<n)); }
+  function render(n){
+    beat=n;
+    const c=['s-'+n];
+    if(n>=1&&n<=4) c.push('s-sound');
+    if(n===2||n===3) c.push('s-radio');
+    if(n>=3) c.push('s-strip');
+    if(n===3) c.push('s-wave');
+    if(n===4||n===5) c.push('s-filter');
+    if(n===5) c.push('s-paint');
+    if(n===6) c.push('s-final');
+    root.className='dviz dsim '+c.join(' ')+(rm?' rm':'');
+    root.dataset.beat=n;
+    dots.forEach((d,i)=>{ d.classList.toggle('active',i===n-1); if(i===n-1) d.setAttribute('aria-current','step'); else d.removeAttribute('aria-current'); });
+    nEl.textContent=n+' / 6';
+    tEl.classList.add('swap');
+    setTimeout(()=>{ tEl.textContent=caps[n-1]; tEl.classList.remove('swap'); },160);
+  }
+  function go(n,auto){
+    clearTimers(); render(n);
+    if(n<5){ setCells(0); place(SPOT[0],SPOT[1]); }
+    if(n===6){ setCells(cells.length); }
+    if(rm){ if(n===5) setCells(cells.length); return; }
+    if(n===5){
+      setCells(0); let i=0;
+      const step=Math.floor(dur[4]/ (cells.length+2));
+      hop=setInterval(()=>{
+        if(i>=cells.length){ clearInterval(hop); hop=null; return; }
+        const c=i%NC, r=Math.floor(i/NC);
+        place(X0+c*CW+CW/2, Y0+r*CH+CH/2);
+        cells[i].classList.add('on'); i++;
+      }, step);
+    }
+    if(visible || !auto){ schedule(n); }
+  }
+  function schedule(n){
+    clearTimeout(timer);
+    timer=setTimeout(()=>{ go(n===6?1:n+1,true); }, dur[n-1]);
+  }
+  dots.forEach(d=> d.addEventListener('click',()=>{ visible=true; go(+d.dataset.step,false); }));
+  document.getElementById('sxReplay').addEventListener('click',()=>{ visible=true; go(1,false); });
+
+  if(rm){ render(6); setCells(cells.length); return; }
+  render(1);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        visible=e.isIntersecting;
+        if(visible){ if(!started){ started=true; go(1,true); } else { schedule(beat); } }
+        else { clearTimeout(timer); }
+      });
+    },{threshold:0.35}).observe(root);
+  } else { started=true; visible=true; go(1,true); }
+})();
+</script>
+<script>
+(function(){
+  const root=document.getElementById('spSim'); if(!root) return;
+  const sens=[...root.querySelectorAll('.sp-sen')], bars=[...root.querySelectorAll('.sp-bar')];
+  const tx=document.getElementById('spTx'), pulse=document.getElementById('spPulse');
+  const nEl=document.getElementById('spN'), tEl=document.getElementById('spT');
+  const dots=[...root.querySelectorAll('.sx-dot')];
+  const caps=['A short pulse goes in',"It bends around what's inside",'Sensors listen all around','Repeat from every angle','Physics-guided AI rebuilds it','Image in under 5 minutes'];
+  const dur=[2000,2200,2400,2800,3200,2800];
+  const CX=180,CY=128,R=94,NS=16;
+  const P=k=>[CX+R*Math.cos(k*Math.PI/8), CY+R*Math.sin(k*Math.PI/8)];
+  const rm=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let beat=1,timer=null,hopT=null,visible=false,started=false;
+
+  function setTx(idx){
+    const [x,y]=P(idx);
+    tx.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
+    pulse.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
+    for(let k=0;k<NS;k++){
+      const [sx,sy]=P(k); const d=Math.hypot(sx-x,sy-y)/188*0.9+0.25;
+      const sc=0.35+0.65*Math.abs(Math.sin(k*1.9+idx*2.7+1));
+      sens[k].style.setProperty('--d',d.toFixed(2)+'s');
+      bars[k].style.setProperty('--d',d.toFixed(2)+'s');
+      bars[k].style.setProperty('--s',sc.toFixed(2));
+    }
+  }
+  function clearTimers(){ clearTimeout(timer); clearTimeout(hopT); timer=hopT=null; }
+  function render(n){
+    beat=n; const c=['s-'+n];
+    if(n<=4) c.push('on-pulse');
+    if(n===2||n===3) c.push('on-scat');
+    if(n===3||n===4) c.push('on-listen');
+    if(n===6) c.push('s-final');
+    root.className='dviz dsim '+c.join(' ')+(rm?' rm':'');
+    root.dataset.beat=n;
+    dots.forEach((d,i)=>{ d.classList.toggle('active',i===n-1); if(i===n-1) d.setAttribute('aria-current','step'); else d.removeAttribute('aria-current'); });
+    nEl.textContent=n+' / 6'; tEl.classList.add('swap');
+    setTimeout(()=>{ tEl.textContent=caps[n-1]; tEl.classList.remove('swap'); },160);
+  }
+  function go(n,auto){
+    clearTimers(); setTx(8); render(n);
+    if(rm) return;
+    if(n===4){
+      const seq=[8,12,0,4]; let i=0;
+      const hop=()=>{ setTx(seq[i%4]); i++; if(i<4) hopT=setTimeout(hop,Math.floor(dur[3]/4)); };
+      hop();
+    }
+    if(visible||!auto) schedule(n);
+  }
+  function schedule(n){ clearTimeout(timer); timer=setTimeout(()=>go(n===6?1:n+1,true),dur[n-1]); }
+  dots.forEach(d=>d.addEventListener('click',()=>{ visible=true; go(+d.dataset.step,false); }));
+  document.getElementById('spReplay').addEventListener('click',()=>{ visible=true; go(1,false); });
+
+  setTx(8);
+  if(rm){ render(6); return; }
+  render(1);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>es.forEach(e=>{
+      visible=e.isIntersecting;
+      if(visible){ if(!started){ started=true; go(1,true); } else schedule(beat); }
+      else clearTimeout(timer);
+    }),{threshold:0.35}).observe(root);
+  } else { started=true; visible=true; go(1,true); }
+})();
 </script>
 </body>
 </html>
